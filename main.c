@@ -4,54 +4,41 @@ float suma(float a,float b);
 float resta(float a,float b);
 float division(float a,float b);
 float multiplicacion(float a,float b);
+float factorial(float a);
+float menuDeOpciones();
+char elegir;
+float x=0,y=0;
 int main()
 {
-        char elegir;
-        float x,y;
-        char salir = "n";
+        float menu;
+        char salir;
     do
      {
-        printf("ingrese el primer operando:");
-        scanf("%f",&x);
-        printf("ingrese el segundo operando:");
-        scanf("%f",&y);
-        fflush(stdin);
-        system("cls");
-        fflush(stdin);
-        system("cls");
-        printf("\t.Menu opciones.");
-        printf("\nOperador 1:%.2f",x);
-        printf("\nOperador 2:%.2f",y);
-        printf("\n1.Sumar:");
-        printf("\n2.Restar:");
-        printf("\n3.Dividir:");
-        printf("\n4.Multiplicar:");
-        printf("\n5.Factorial:");
-        printf("\n6.Salir:");
-        printf("\nIndique una opcion:");
-        elegir = getchar();
-
-
+        menu = menuDeOpciones();
         switch(elegir)
         {
-            case '1':
-                printf("Ingreso sumar");
+            case 'a':
+                printf("\nSuma:");
                 float sumar = suma(x,y);
-                break;
-            case '2':
-                printf("Ingreso restar");
+            case 'b':
+                printf("\nResta:");
                 float restar = resta(x,y);
-                break;
-            case '3':
-                printf("Ingreso dividir");
+
+            case 'c':
+                printf("\nDivision:");
                 float dividir = division(x,y);
-                break;
-            case '4':
-                printf("Ingreso multiplicar");
+
+            case 'd':
+                printf("\nMultiplicacion:");
                 float multiplicar = multiplicacion(x,y);
+            case 'e':
+                printf("\nFactorial:");
+                float factorial1 = factorial(x);
+                float factorial2 = factorial(y);
+            case 'f':
                 break;
         }
-    }while( salir == "n");
+    }while( salir == 'n');
         return 0;
 }
 
@@ -72,8 +59,15 @@ float resta(float a,float b)
 float division(float a,float b)
 {
     float resultado;
-    resultado = a/b;
-    printf("\nEl resultado es:%.2f",resultado);
+    if(x==0||y==0)
+    {
+        printf("\nEl resultado es:No se puede calcular la division ya que uno de los operadores es 0");
+    }
+    else
+    {
+        resultado = a/b;
+        printf("\nEl resultado es:%.2f",resultado);
+    }
     return resultado;
 }
 float multiplicacion(float a,float b)
@@ -81,7 +75,42 @@ float multiplicacion(float a,float b)
     float resultado;
     resultado = a*b;
     printf("\nEl resultado es:%.2f",resultado);
-    return resultado;char elegir;
+    return resultado;
 }
-
-
+float factorial(float a)
+{
+    float i,resultado=1;
+    if(a==0)
+    {
+        printf("\nEl factorial es:0");
+    }
+    else
+    {   for(i=1;i<=a;i++)
+        {
+            resultado=resultado*i;
+        }
+        printf("\nEl factorial es:%.2f",resultado);
+    }
+    return resultado;
+}
+float menuDeOpciones()
+{
+        printf("\ningrese el valor del operador A:");
+        scanf("%f",&x);
+        printf("ingrese el valor del operador B:");
+        scanf("%f",&y);
+        system("cls");
+        printf("\t.Menu opciones.");
+        printf("\na.Sumar:");
+        printf("\nb.Restar:");
+        printf("\nc.Dividir:");
+        printf("\nd.Multiplicar:");
+        printf("\ne.Factorial:");
+        printf("\nf.Salir:");
+        printf("\n.Operador A:%.2f",x);
+        printf("\n.Operador B:%.2f",y);
+        printf("\nIndique una opcion:");
+        fflush(stdin);
+        elegir = getchar();
+        return 0;
+}
